@@ -11,14 +11,14 @@ import com.booster.entity.GenericEntity;
 import com.booster.repository.GenericRepository;
 
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-public class GenericServiceImpl {
+public class GenericService {
 		
 	GenericRepository repository;
 	
-	public GenericServiceImpl() {
+	public GenericService() {
 	}
 
-	public GenericServiceImpl(GenericRepository repository) {
+	public GenericService(GenericRepository repository) {
 		this.repository = repository;
 	}
 

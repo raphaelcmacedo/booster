@@ -7,14 +7,14 @@
 						http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<beans:bean id="customAuthenticationProvider"
-		class="org.wpattern.frameworks.jsf.primefaces.support.settings.CustomAuthenticationProvider" />
+		class="com.booster.util.CustomAuthenticationProvider" />
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/index.jsp" access="permitAll" />
 		<intercept-url pattern="/login.faces" access="permitAll" />
 		<intercept-url pattern="/public/**" access="permitAll" />
-		<intercept-url pattern="/resources/**" access="hasAuthority('ROLE_USER')" />
-		<intercept-url pattern="/pages/**" access="hasAuthority('ROLE_USER')" />
+		<intercept-url pattern="/resources/**" access="isAuthenticated()" />
+		<intercept-url pattern="/pages/**" access="isAuthenticated()" />
 
 		<form-login login-page="/login.faces"
 			authentication-failure-url="/login.faces?erro=true"

@@ -12,15 +12,15 @@
 	<title>Booster</title>
 </h:head>
 
-<h:body onload="document.content.dialog.login.j_username.focus();">
+<h:body onload="document.content.dialog.login.j_login.focus();">
 	<div id="content" title="Booster Login">
 		<p:dialog header="#{labels.login_go}" id="dialog" minWidth="500"
 			width="290" modal="true" closable="false" position="center"
 			showEffect="slide" draggable="true" resizable="false" visible="true">
 			<form name='login' action="j_spring_security_check" method='post'>
 				<p:panelGrid columns="2">
-					<h:outputLabel for="j_username" value="#{labels.login_username} *: " />
-					<p:inputText id="j_username" requerid="true" />
+					<h:outputLabel for="j_login" value="#{labels.login_username} *: " />
+					<p:inputText id="j_login" requerid="true" />
 
 					<h:outputLabel for="j_password" value="#{labels.login_password} *: " />
 					<p:password id="j_password" requerid="true" />
