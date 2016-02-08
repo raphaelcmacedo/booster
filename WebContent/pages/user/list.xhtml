@@ -9,7 +9,7 @@
 
 	<ui:define name="content">
 		<f:view>
-			<f:event listener="#{userMB.onLoad}" type="preRenderView" />
+			<f:event listener="#{userMB.listAll()}" type="preRenderView" />
 		</f:view>
 
 		<p:panel id="userPanel" header="#{labels.user}">

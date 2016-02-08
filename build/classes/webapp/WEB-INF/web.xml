@@ -13,22 +13,21 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
-	<!-- LOADER OF SPRING CONTEXT -->
+	<!-- SPRING CONTEXT -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath:ctx-booster.xml
-			classpath:ctx-booster-spring-security.xml
-		</param-value>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+		<param-value>/WEB-INF/springSecurity.xml</param-value>
 	</context-param>
-
-	<!-- SPRING LISTENER -->
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
 	</listener>
-
 	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
 	</listener>
 
 	<!-- PRIMEFACES THEME CONFIG -->
@@ -65,7 +64,7 @@
 		<auth-constraint />
 	</security-constraint>
 	
-	<!-- SPRING SECURITY FILTER -->
+	<!-- SPRING SECURITY FILTER-->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

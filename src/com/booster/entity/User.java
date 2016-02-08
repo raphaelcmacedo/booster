@@ -17,35 +17,16 @@ public class User implements GenericEntity {
 	@Column(name="userid")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="sequence")
 	private long id;
-	
-	@ManyToOne
-	@JoinColumn(name="idathlete")
-	private Athlete athlete;
-	
-	@ManyToOne
-	@JoinColumn(name="idtrainer")
-	private Trainer trainer;
-	
+		
 	private String login;
 	private String password;
+	private String role;
 	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
-	public Athlete getAthlete() {
-		return athlete;
-	}
-	public void setAthlete(Athlete athlete) {
-		this.athlete = athlete;
-	}
-	public Trainer getTrainer() {
-		return trainer;
-	}
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
 	}
 	public String getLogin() {
 		return login;
@@ -59,16 +40,12 @@ public class User implements GenericEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String getRole(){
-		if(this.getAthlete() != null){
-			return "ATHLETE";
-		}else{
-			return "TRAINER";
-		}
-
+	public String getRole() {
+		return role;
 	}
-	
+	public void setRole(String role) {
+		this.role = role;
+	}
 	
 	
 }

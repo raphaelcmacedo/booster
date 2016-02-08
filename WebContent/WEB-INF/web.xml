@@ -16,8 +16,12 @@
 	<!-- SPRING CONTEXT -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/applicationContext.xml</param-value>
-		<param-value>/WEB-INF/springSecurity.xml</param-value>
+		<!-- <param-value>/WEB-INF/applicationContext.xml</param-value>
+		<param-value>/WEB-INF/springSecurity.xml</param-value>-->
+		<param-value>
+		/WEB-INF/applicationContext.xml
+		/WEB-INF/springSecurity.xml
+		</param-value>-->
 	</context-param>
 	<listener>
 		<listener-class>
@@ -64,7 +68,7 @@
 		<auth-constraint />
 	</security-constraint>
 	
-	SPRING SECURITY FILTER
+	<!-- SPRING SECURITY FILTER-->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
