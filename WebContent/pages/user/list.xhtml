@@ -8,36 +8,17 @@
 	xmlns:p="http://primefaces.org/ui" template="../main.xhtml">
 
 	<ui:define name="content">
-		<f:view>
-			<f:event listener="#{userMB.listAll()}" type="preRenderView" />
-		</f:view>
-
-		<p:panel id="userPanel" header="#{labels.user}">
-			<h:form id="userForm">
+		
+		<p:panel id="pnlList" header="#{labels.user}">
+			<h:form id="form">
 				<p:commandButton widgetVar="addButton" value="#{labels.button_add}"
-					action="/pages/user/addEdit.faces" ajax="false"
-					actionListener="#{userAddEditMB.add}" />
-				<p:commandButton widgetVar="deleteButton"
-					value="#{labels.button_delete}" action="#{userMB.delete}"
-					update="userDataTable" oncomplete="unselectRows();"  />
-				<p:commandButton widgetVar="updateButton"
-					value="#{labels.button_update}" update="userDataTable"
-					action="/pages/user/addEdit.faces"
-					actionListener="#{userAddEditMB.update}" />
-
-				<p:dataTable id="userDataTable" widgetVar="dataTable" var="user"
-					loadingMessage="#{labels.user_load}" value="#{userMB.users}"
+					action="/pages/user/detail.faces" ajax="false" />
+				<p:dataTable id="tblData" widgetVar="dataTable" var="user"
+					loadingMessage="#{labels.user_load}" value="#{userMB.dataProvider}"
 					paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,20" rowKey="#{user.id}"
 					selectionMode="single">
-
-					<p:ajax event="rowSelect" listener="#{userMB.selectUser}"
-						oncomplete="enableButtons();" />
-					<p:ajax event="page" listener="#{userMB.unselectUser}"
-						oncomplete="unselectRows();" />
-					<p:ajax event="rowUnselect" listener="#{userMB.unselectUser}"
-						oncomplete="disableButtons();" />
 
 					<p:column>
 						<f:facet name="header">
@@ -48,18 +29,11 @@
 
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="#{labels.user_name}" />
-						</f:facet>
-						<h:outputText value="#{user.name}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
 							<h:outputText value="#{labels.user_login}" />
 						</f:facet>
 						<h:outputText value="#{user.login}" />
 					</p:column>
-					
+
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="#{labels.user_password}" />
@@ -73,7 +47,23 @@
 						</f:facet>
 						<h:outputText value="#{user.role}" />
 					</p:column>
+					
+					<p:column>
+                        <p:commandButton id="btnDelete" update=":form:dlgDelete" oncomplete="confirmation.show()" icon="fa-remove" title="Delete">
+                           <f:setPropertyActionListener value="#{user}" target="#{userMB.entity}" />
+                       </p:commandButton>
+                   </p:column>
+					
 				</p:dataTable>
+				
+				<p:confirmDialog header="Warnning" widgetVar="confirmation" resizable="false" id="dlgDelete" appendTo="@(body)" severity="alert"
+                            showEffect="fade" hideEffect="fade" modal="true" message="#{labels.delete_confirm}">
+                        <h:form>    
+	                        <p:commandButton id="btnConfirm" update=":form:tblData" actionListener="#{userMB.delete}" oncomplete="confirmation.hide()" process="@this" value="Delete"/>
+	                        <p:commandButton id="btnCancel" onclick="confirmation.hide()" value="Cancel"/>
+                        </h:form>
+                </p:confirmDialog>
+				
 			</h:form>
 		</p:panel>
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import com.booster.entity.GenericEntity;
 import com.booster.repository.GenericRepository;
 
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+@Service(value="GenericService")
 public class GenericService {
 		
 	GenericRepository repository;

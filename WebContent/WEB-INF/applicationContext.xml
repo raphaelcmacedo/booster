@@ -62,5 +62,16 @@
 
 	<!-- Habilita os Services para serem transicionais via a Annotation @Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	
+	<!-- View Scope -->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+    <property name="scopes">
+        <map>
+            <entry key="view">
+                <bean class="com.booster.factory.ViewScope"/>
+            </entry>
+        </map>
+    </property>
+</bean>
+	
 </beans>

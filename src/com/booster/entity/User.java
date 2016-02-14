@@ -8,13 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @SequenceGenerator(name = "sequence", sequenceName = "seq_user")
+@Table(name="users")
 public class User implements GenericEntity {
 	
 	@Id
-	@Column(name="userid")
+	@Column(name="iduser")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="sequence")
 	private long id;
 		

@@ -33,6 +33,10 @@ implements GenericRepository {
     	return this.persistentClass;  
     }  
 	
+    protected Query createQuery(String hql){
+    	return getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+    }
+    
 	@Override
 	public void delete(GenericEntity entity) {
 		getHibernateTemplate().delete(entity);

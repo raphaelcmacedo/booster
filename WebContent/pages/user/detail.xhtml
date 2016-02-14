@@ -9,22 +9,22 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:inputHidden value="#{userAddEditMB.user.id}" />
+			<h:inputHidden value="#{userMB.entity.id}" />
 
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="2" id="pnlDetail">
 				<f:facet name="header">
-					<p:outputLabel value="#{userAddEditMB.title}" />
+					<p:outputLabel value="#{userMB.getTitleFromThePage()}" />
 				</f:facet>
 
 				
 				<p:outputLabel value="#{labels.user_login}: " />
-				<p:inputText value="#{userAddEditMB.user.login}" />
+				<p:inputText value="#{userMB.entity.login}" />
 				
 				<p:outputLabel value="#{labels.user_password}: " />
-				<p:inputText value="#{userAddEditMB.user.password}" />
+				<p:inputText value="#{userMB.entity.password}" />
 				
 				<p:outputLabel value="#{labels.user_role}: " />
-				<p:inputText value="#{userAddEditMB.user.role}" />
+				<p:inputText value="#{userMB.entity.role}" />
 
 				<f:facet name="footer">
 					<p:row>
@@ -32,11 +32,11 @@
 							layout="block">
 
 							<p:commandButton value="#{labels.button_save}"
-								action="list.faces" actionListener="#{userAddEditMB.save}"
+								action="list.faces" actionListener="#{userMB.save}"
 								style="margin: 130 auto;" ajax="false" />
 							<p:commandButton value="#{labels.button_cancel}"
 								action="/pages/user/list.faces"
-								actionListener="#{userAddEditMB.cancel}"
+								actionListener="#{userMB.cancel}"
 								style="margin: 130 auto;" ajax="false" />
 						</p:outputPanel>
 					</p:row>
