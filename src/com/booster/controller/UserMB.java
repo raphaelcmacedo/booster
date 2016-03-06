@@ -8,8 +8,8 @@ import com.booster.entity.User;
 import com.booster.service.UserService;
 
 @Controller("userMB")
-@Scope(value="session")
-//@Scope("view")
+//@Scope(value="session")
+@Scope("view")
 public class UserMB extends GenericCrudMB<User, UserService> {
 
 	private UserService service;

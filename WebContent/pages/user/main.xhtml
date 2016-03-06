@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="../main.xhtml">
+
+	<ui:define name="content">
+
+		<p:panel id="pnlList" header="#{labels.user}">
+			<div align="center">
+				<h:form id="mainForm">
+
+
+					<p:dataTable var="registry" value="#{userMB.dataProvider}"
+						id="tblData" style="width:70%">
+						<f:facet name="header">Users</f:facet>
+
+						<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{labels.user_id}" />
+						</f:facet>
+						<h:outputText value="#{registry.id}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{labels.user_login}" />
+						</f:facet>
+						<h:outputText value="#{registry.login}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{labels.user_password}" />
+						</f:facet>
+						<h:outputText value="#{registry.password}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{labels.user_role}" />
+						</f:facet>
+						<h:outputText value="#{registry.role}" />
+					</p:column>
+					
+						<p:column headerText="Ações">
+							<p:commandLink title="Alterar" update=":formAlterar:Alterar"
+								oncomplete="dialogAlterar.show()" immediate="true">
+								<p:graphicImage value="./public/images/edit.png" />
+								Edit
+								<f:setPropertyActionListener target="#{userMB.entity}"
+									value="#{registry}" />
+							</p:commandLink>
+							<p:commandLink title="Excluir" update=":formExcluir:Excluir"
+								oncomplete="confirmation.show()" immediate="true">
+								<p:graphicImage value="./public/images/delete.png" />
+								Delete
+								<f:setPropertyActionListener target="#{userMB.entity}"
+									value="#{registry}" />
+							</p:commandLink>
+						</p:column>
+
+					</p:dataTable>
+
+					<p:commandButton value="Cadastrar" id="cadastrar"
+						oncomplete="dialogCadastrar.show()" />
+				</h:form>
+			</div>
+			<h:form id="formAlterar">
+				<p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
+					id="Alterar">
+					<p:panelGrid id="panelAlterar" columns="2">
+						<p:outputLabel value="#{labels.user_login}: " />
+						<p:inputText value="#{userMB.entity.login}" />
+						
+						<p:outputLabel value="#{labels.user_password}: " />
+						<p:inputText value="#{userMB.entity.password}" />
+						
+						<p:outputLabel value="#{labels.user_role}: " />
+						<p:inputText value="#{userMB.entity.role}" />
+					</p:panelGrid>
+					<p:commandButton value="Alterar"
+						actionListener="#{userMB.save}"
+						update=":mainForm:tblData"
+						oncomplete="dialogAlterar.hide()" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formCadastrar">
+				<p:dialog header="Cadastrar" widgetVar="dialogCadastrar"
+					modal="true">
+					<p:panelGrid id="panelCadastrar" columns="2">
+						<p:outputLabel value="#{labels.user_login}: " />
+						<p:inputText value="#{userMB.entity.login}" />
+						
+						<p:outputLabel value="#{labels.user_password}: " />
+						<p:inputText value="#{userMB.entity.password}" />
+						
+						<p:outputLabel value="#{labels.user_role}: " />
+						<p:inputText value="#{userMB.entity.role}" />
+					</p:panelGrid>
+					<p:commandButton value="Cadastrar"
+						actionListener="#{userMB.save}"
+						update=":mainForm:tblData"
+						oncomplete="dialogCadastrar.hide()"/>
+						
+				</p:dialog>
+			</h:form>
+			<h:form id="formExcluir">
+				<p:confirmDialog id="Excluir"
+					message="#{labels.delete_confirm}"
+					header="Delete" severity="alert" widgetVar="confirmation">
+
+					<p:commandButton id="confirm" value="Sim"
+						oncomplete="confirmation.hide()"
+						actionListener="#{userMB.delete}"
+						update=":mainForm:tblData" />
+					<p:commandButton id="decline" value="Não"
+						onclick="confirmation.hide()" type="button" />
+
+				</p:confirmDialog>
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
