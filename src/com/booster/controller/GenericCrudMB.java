@@ -154,7 +154,6 @@ public abstract class GenericCrudMB<Entity extends GenericEntity, Service extend
 
 	
 	public void delete(ActionEvent event) {
-		// Alterna os panels necessбrios para mostrar o conteъdo da exclusгo
 		setCurrentState(STATE_DELETE);
 		
 		service.delete(getEntity());

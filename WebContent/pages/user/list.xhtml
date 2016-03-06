@@ -11,8 +11,7 @@
 		
 		<p:panel id="pnlList" header="#{labels.user}">
 			<h:form id="form">
-				<p:commandButton widgetVar="addButton" value="#{labels.button_add}"
-					action="/pages/user/detail.faces" ajax="false" />
+				<h:button value="#{labels.button_add}" outcome="/pages/user/detail.faces"/>	
 				<p:dataTable id="tblData" widgetVar="dataTable" var="user"
 					loadingMessage="#{labels.user_load}" value="#{userMB.dataProvider}"
 					paginator="true" rows="10"
