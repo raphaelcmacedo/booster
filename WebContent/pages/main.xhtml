@@ -19,7 +19,7 @@
 		<title>Booster</title>
 	</h:head>
 	
-	<h:body onload="disableButtons();">	
+	<h:body>	
 		<p:layout fullPage="true">
 			<p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="false">
 				<ui:include src="header.xhtml" />
@@ -36,6 +36,8 @@
 			<p:layoutUnit position="center">
 				<ui:insert name="content"/>
 			</p:layoutUnit>
+			
+			<ui:insert name="dialogs"/>
 		</p:layout>
 	</h:body>
 </f:view>

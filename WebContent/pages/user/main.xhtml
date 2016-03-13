@@ -16,8 +16,6 @@
 
 					<p:dataTable var="registry" value="#{userMB.dataProvider}"
 						id="tblData" style="width:70%">
-						<f:facet name="header">Users</f:facet>
-
 						<p:column>
 						<f:facet name="header">
 							<h:outputText value="#{labels.user_id}" />
@@ -69,7 +67,13 @@
 						oncomplete="dialogCadastrar.show()" />
 				</h:form>
 			</div>
-			<h:form id="formAlterar">
+			
+		</p:panel>
+
+	</ui:define>
+	
+	<ui:define name="dialogs">
+		<h:form id="formAlterar">
 				<p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
 					id="Alterar">
 					<p:panelGrid id="panelAlterar" columns="2">
@@ -123,7 +127,5 @@
 
 				</p:confirmDialog>
 			</h:form>
-		</p:panel>
-
 	</ui:define>
 </ui:composition>
