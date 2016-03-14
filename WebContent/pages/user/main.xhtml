@@ -47,15 +47,14 @@
 						<p:column headerText="Ações">
 							<p:commandLink title="Alterar" update=":formAlterar:Alterar"
 								oncomplete="dialogAlterar.show()" immediate="true">
-								<p:graphicImage value="./public/images/edit.png" />
-								Edit
+								<p:graphicImage value="#{FacesContext.getCurrentInstance().getExternalContext()}/public/images/edit.png" />
+								
 								<f:setPropertyActionListener target="#{userMB.entity}"
 									value="#{registry}" />
 							</p:commandLink>
 							<p:commandLink title="Excluir" update=":formExcluir:Excluir"
 								oncomplete="confirmation.show()" immediate="true">
-								<p:graphicImage value="./public/images/delete.png" />
-								Delete
+								<p:graphicImage value="#{FacesContext.getCurrentInstance().getExternalContext()}/public/images/delete.png" />
 								<f:setPropertyActionListener target="#{userMB.entity}"
 									value="#{registry}" />
 							</p:commandLink>
