@@ -8,21 +8,24 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+	
+	<!-- Load of the roperties   -->	
+	<context:property-placeholder location="*/database.properties" />
+	
 	<context:annotation-config/>
 	<context:component-scan base-package="com.booster" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="url" value="jdbc:postgresql://localhost:5432/booster" />
+		<property name="url" value="${jdbc.url}" />
 		<property name="driverClassName">
-			<value>org.postgresql.Driver</value>
+			<value>${jdbc.driver}</value>
 		</property>
 		<property name="username">
-			<value>postgres</value>
+			<value>${jdbc.username}</value>
 		</property>
 		<property name="password">
-			<value>masterkey</value>
+			<value>${jdbc.password}</value>
 		</property>
 	</bean>
 
@@ -40,16 +43,16 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					org.hibernate.dialect.PostgreSQLDialect
+					${hibernate.dialect}
 				</prop>
 				<prop key="hibernate.show_sql">
-					true
+					${hibernate.show_sql}
 				</prop>
 			</props>
 		</property>
 
 		<property name="basePackage">
-			<value>com.booster.entity</value>
+			<value>${hibernate.base_package}</value>
 		</property>
 
 	</bean>
