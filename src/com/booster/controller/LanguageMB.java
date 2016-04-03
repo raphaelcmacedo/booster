@@ -43,8 +43,7 @@ public class LanguageMB implements Serializable {
 			this.localeCode = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
 		}
 		
-		//return this.localeCode;
-		return "en";
+		return this.localeCode;
 	}
 
 	public void setLocaleCode(String localeCode) {

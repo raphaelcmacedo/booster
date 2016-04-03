@@ -18,36 +18,16 @@ import com.booster.service.GenericService;
 
 public abstract class GenericCrudMB<Entity extends GenericEntity, Service extends GenericService> implements Serializable {
 	
-	User entity = new User();
+	//Properties
+	Entity entity = this.getNewEntityInstance();
 	List<GenericEntity> dataProvider = new ArrayList<GenericEntity>();
 	private Service service;
  
-	//construtor
-	public GenericCrudMB(Service service){
-		this.service = service;
-		dataProvider = service.list();
-		entity = new User();
-	}
- 
-	//Métodos dos botões 
-	public void save(ActionEvent actionEvent){
-		service.save(entity);
-		dataProvider = service.list();
-		entity = new User();
-	}
- 
-	
-	public void delete(ActionEvent actionEvent){
-		service.delete(entity);
-		dataProvider = service.list();
-		entity = new User();
-	}
-
-	public User getEntity() {
+	public Entity getEntity() {
 		return entity;
 	}
 
-	public void setEntity(User entity) {
+	public void setEntity(Entity entity) {
 		this.entity = entity;
 	}
 
@@ -58,6 +38,37 @@ public abstract class GenericCrudMB<Entity extends GenericEntity, Service extend
 	public void setDataProvider(List<GenericEntity> dataProvider) {
 		this.dataProvider = dataProvider;
 	}
+	
+	//Constructor
+	public GenericCrudMB(Service service){
+		this.service = service;
+		dataProvider = service.list();
+		entity = this.getNewEntityInstance();
+	}
  
+	//Actions 
+	public void save(ActionEvent actionEvent){
+		service.save(entity);
+		dataProvider = service.list();
+		entity = this.getNewEntityInstance();
+	}
+ 
+	public void delete(ActionEvent actionEvent){
+		service.delete(entity);
+		dataProvider = service.list();
+		entity = this.getNewEntityInstance();
+	}
+	
+	//Util
+	protected Entity getNewEntityInstance() {
+		try {
+			return (Entity) ((Class) ((java.lang.reflect.ParameterizedType) this
+					.getClass().getGenericSuperclass())
+					.getActualTypeArguments()[0]).newInstance();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
 	
 }

@@ -45,13 +45,13 @@
 					</p:column>
 					
 						<p:column headerText="#{labels.actions}">
-							<p:commandLink update=":formAlterar:Alterar"
-								oncomplete="dialogAlterar.show()" immediate="true">
+							<p:commandLink update=":formEdit:Edit"
+								oncomplete="dialogEdit.show()" immediate="true">
 								<p:graphicImage value="#{FacesContext.getCurrentInstance().getExternalContext()}/public/images/edit.png" />
 								<f:setPropertyActionListener target="#{userMB.entity}"
 									value="#{registry}" />
 							</p:commandLink>
-							<p:commandLink update=":formExcluir:Excluir"
+							<p:commandLink update=":formDelete:Delete"
 								oncomplete="confirmation.show()" immediate="true">
 								<p:graphicImage value="#{FacesContext.getCurrentInstance().getExternalContext()}/public/images/delete.png" />
 								<f:setPropertyActionListener target="#{userMB.entity}"
@@ -61,8 +61,8 @@
 
 					</p:dataTable>
 
-					<p:commandButton value="Cadastrar" id="cadastrar"
-						oncomplete="dialogCadastrar.show()" />
+					<p:commandButton value="Add" id="cadastrar"
+						oncomplete="dialogAdd.show()" />
 				</h:form>
 			</div>
 			
@@ -71,10 +71,10 @@
 	</ui:define>
 	
 	<ui:define name="dialogs">
-		<h:form id="formAlterar">
-				<p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
-					id="Alterar">
-					<p:panelGrid id="panelAlterar" columns="2">
+		<h:form id="formEdit">
+				<p:dialog header="Edit" widgetVar="dialogEdit" modal="true"
+					id="Edit">
+					<p:panelGrid id="panelEdit" columns="2">
 						<p:outputLabel value="#{labels.user_login}: " />
 						<p:inputText value="#{userMB.entity.login}" />
 						
@@ -84,17 +84,17 @@
 						<p:outputLabel value="#{labels.user_role}: " />
 						<p:inputText value="#{userMB.entity.role}" />
 					</p:panelGrid>
-					<p:commandButton value="Alterar"
+					<p:commandButton value="Edit"
 						actionListener="#{userMB.save}"
 						update=":mainForm:tblData"
-						oncomplete="dialogAlterar.hide()" />
+						oncomplete="dialogEdit.hide()" />
 				</p:dialog>
 			</h:form>
 
-			<h:form id="formCadastrar">
-				<p:dialog header="Cadastrar" widgetVar="dialogCadastrar"
+			<h:form id="formAdd">
+				<p:dialog header="#{labels.add}" widgetVar="dialogAdd"
 					modal="true">
-					<p:panelGrid id="panelCadastrar" columns="2">
+					<p:panelGrid id="panelAdd" columns="2">
 						<p:outputLabel value="#{labels.user_login}: " />
 						<p:inputText value="#{userMB.entity.login}" />
 						
@@ -104,23 +104,23 @@
 						<p:outputLabel value="#{labels.user_role}: " />
 						<p:inputText value="#{userMB.entity.role}" />
 					</p:panelGrid>
-					<p:commandButton value="Cadastrar"
+					<p:commandButton value="#{labels.add}"
 						actionListener="#{userMB.save}"
 						update=":mainForm:tblData"
-						oncomplete="dialogCadastrar.hide()"/>
+						oncomplete="dialogAdd.hide()"/>
 						
 				</p:dialog>
 			</h:form>
-			<h:form id="formExcluir">
-				<p:confirmDialog id="Excluir"
+			<h:form id="formDelete">
+				<p:confirmDialog id="Delete"
 					message="#{labels.delete_confirm}"
 					header="Delete" severity="alert" widgetVar="confirmation">
 
-					<p:commandButton id="confirm" value="Sim"
+					<p:commandButton id="confirm" value="#{labels.yes}"
 						oncomplete="confirmation.hide()"
 						actionListener="#{userMB.delete}"
 						update=":mainForm:tblData" />
-					<p:commandButton id="decline" value="Não"
+					<p:commandButton id="decline" value="#{labels.no}"
 						onclick="confirmation.hide()" type="button" />
 
 				</p:confirmDialog>
