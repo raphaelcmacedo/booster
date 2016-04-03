@@ -17,7 +17,7 @@
 		<intercept-url pattern="/pages/**" access="isAuthenticated()" />
 
 		<form-login login-page="/login.faces"
-			authentication-failure-url="/login.faces?erro=true"
+			authentication-failure-url="/login.faces?error=true"
 			default-target-url="/pages/main.faces" />
 			
 		<logout logout-success-url="/login.faces" />
